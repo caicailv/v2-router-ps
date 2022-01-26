@@ -74,7 +74,7 @@ export default class VueRouter {
     redirectedFrom?: Location
   ): Route {
     return this.matcher.match(raw, current, redirectedFrom)
-  }
+  } 
 
   get currentRoute (): ?Route {
     return this.history && this.history.current

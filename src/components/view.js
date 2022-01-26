@@ -14,6 +14,8 @@ export default {
 
     // directly use parent context's createElement() function
     // so that components rendered by router-view can resolve named slots
+    //直接使用父上下文的createElement（）函数
+    //这样，路由器视图呈现的组件就可以解析命名插槽
     const h = parent.$createElement
     const name = props.name
     const route = parent.$route
@@ -21,6 +23,8 @@ export default {
 
     // determine current view depth, also check to see if the tree
     // has been toggled inactive but kept-alive.
+    //确定当前视图深度，同时检查树是否
+    //已切换为非活动状态，但仍保持活动状态。
     let depth = 0
     let inactive = false
     while (parent && parent._routerRoot !== parent) {
