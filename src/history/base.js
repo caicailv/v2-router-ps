@@ -62,6 +62,7 @@ export class History {
   }
 
   transitionTo (location: RawLocation, onComplete?: Function, onAbort?: Function) {
+    /* 切换当前选中路径,并格式化route */
     const route = this.router.match(location, this.current)
     this.confirmTransition(route, () => {
       this.updateRoute(route)
@@ -111,13 +112,16 @@ export class History {
       deactivated,
       activated
     } = resolveQueue(this.current.matched, route.matched)
-
+    // 拿到所有的拦截守卫,组成数组  ,包括组件内拦截,全局拦截
     const queue: Array<?NavigationGuard> = [].concat(
       // in-component leave guards
+      //离开警卫
       extractLeaveGuards(deactivated),
       // global before hooks
+      // 全局钩子
       this.router.beforeHooks,
       // in-component update hooks
+      //组件内更新挂钩
       extractUpdateHooks(updated),
       // in-config enter guards
       activated.map(m => m.beforeEnter),

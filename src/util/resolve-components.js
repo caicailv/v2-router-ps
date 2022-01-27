@@ -15,6 +15,11 @@ export function resolveAsyncComponents (matched: Array<RouteRecord>): Function {
       // we are not using Vue's default async resolving mechanism because
       // we want to halt the navigation until the incoming component has been
       // resolved.
+      // 如果它是一个函数并且没有附加 cid，
+       // 假设它是一个异步组件解析函数。
+       // 我们没有使用 Vue 的默认异步解析机制，因为
+       // 我们要停止导航，直到传入的组件已经完成
+       // 解决。
       if (typeof def === 'function' && def.cid === undefined) {
         hasAsync = true
         pending++
@@ -98,6 +103,10 @@ function isESModule (obj) {
 // so the resolve/reject functions may get called an extra time
 // if the user uses an arrow function shorthand that happens to
 // return that Promise.
+// 在 Webpack 2 中，require.ensure 现在也返回一个 Promise
+// 所以解析/拒绝函数可能会被调用一个额外的时间
+// 如果用户使用了箭头函数的简写方式
+// 返回那个 Promise。
 function once (fn) {
   let called = false
   return function (...args) {

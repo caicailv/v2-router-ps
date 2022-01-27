@@ -19,6 +19,7 @@ export const supportsPushState = inBrowser && (function () {
 })()
 
 // use User Timing api (if present) for more accurate key precision
+//使用用户计时api（如果有）可获得更准确的按键精度
 const Time = inBrowser && window.performance && window.performance.now
   ? window.performance
   : Date

@@ -19,6 +19,8 @@ export class HashHistory extends History {
 
   // this is delayed until the app mounts
   // to avoid the hashchange listener being fired too early
+  //这将被延迟，直到应用程序挂载
+  //避免hashchange侦听器过早被触发
   setupListeners () {
     const router = this.router
     const expectScroll = router.options.scrollBehavior
@@ -100,6 +102,8 @@ function ensureSlash (): boolean {
 export function getHash (): string {
   // We can't use window.location.hash here because it's not
   // consistent across browsers - Firefox will pre-decode it!
+  // 我们不能在这里使用 window.location.hash 因为它不是
+   // 跨浏览器一致 - Firefox 将对其进行预解码！
   const href = window.location.href
   const index = href.indexOf('#')
   return index === -1 ? '' : href.slice(index + 1)
